@@ -7,6 +7,7 @@ const {
 } = require("../Middleware/validate");
 const { login } = require("../Controllers/login");
 const { verifyToken } = require("../Middleware/auth");
+const { getMovie } = require("../Controllers/movies");
 const router = express();
 
 router.post("/users", validateFieldsUser, isEmailAlreadyExists, registerUser);
@@ -17,5 +18,7 @@ router.use(verifyToken);
 
 router.get("/users", getUser);
 router.put("/users", validateFieldsUser, isEmailAlreadyExists, updateUser);
+
+router.get("/movie", getMovie);
 
 module.exports = router;
