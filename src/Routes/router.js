@@ -1,5 +1,5 @@
 const express = require("express");
-const { registerUser, getUser } = require("../Controllers/users");
+const { registerUser, getUser, updateUser } = require("../Controllers/users");
 const {
   validateFieldsUser,
   isEmailAlreadyExists,
@@ -13,8 +13,9 @@ router.post("/users", validateFieldsUser, isEmailAlreadyExists, registerUser);
 
 router.post("/login", validateFieldsLogin, login);
 
-router.use(verifyToken)
+router.use(verifyToken);
 
-router.get("/users", getUser)
+router.get("/users", getUser);
+router.put("/users", validateFieldsUser, isEmailAlreadyExists, updateUser);
 
 module.exports = router;
