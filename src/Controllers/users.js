@@ -3,9 +3,10 @@ const encrypt = require('bcrypt');
 
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body
+  const salts = parseInt(process.env.SALT)
 
   try {
-    const passCrypt = await encrypt.hash(password, 10);
+    const passCrypt = await encrypt.hash(password, salts);
     const newUser = {
       name,
       email,
